@@ -1,0 +1,119 @@
+@model ConserviceHRSite.Models.Employee
+@{ ViewData["Title"] = "Edit Employee"; }
+<h1>Edit Employee Information</h1>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="ID" />
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Address" class="control-label"></label>
+                <input asp-for="Address" class="form-control" />
+                <span asp-validation-for="Address" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Email" class="control-label"></label>
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Phone" class="control-label"></label>
+                <input asp-for="Phone" class="form-control" />
+                <span asp-validation-for="Phone" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="StartDate" class="control-label"></label>
+                <input asp-for="StartDate" class="form-control" />
+                <span asp-validation-for="StartDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EndDate" class="control-label"></label>
+                <input asp-for="EndDate" class="form-control" />
+                <span asp-validation-for="EndDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Status" class="control-label"></label>
+                <select asp-for="Status" class="form-control">
+                    @foreach (int status in Enum.GetValues(typeof(EmployeeStatus)))
+                    {
+        <option value="@status">@Enum.GetName(typeof(EmployeeStatus), status)</option>
+;
+    }
+                </select>
+                <span asp-validation-for="Status" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Department" class="control-label"></label>
+                <select asp-for="DepartmentID" class="form-control" asp-items="ViewBag.DepartmentID">
+                    <option value="">-- Select Department --</option>
+                </select>
+                <span asp-validation-for="DepartmentID" class="text-danger" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Position" class="control-label"></label>
+                <select asp-for="PositionID" class="form-control" asp-items="ViewBag.PositionID">
+                    <option value="">-- Select Position --</option>
+                </select>
+                <span asp-validation-for="PositionID" class="text-danger" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Manager" class="control-label"></label>
+                <select asp-for="ManagerID" class="form-control" asp-items="ViewBag.ManagerID">
+                    <option value="">-- Select Manager --</option>
+                </select>
+                <span asp-validation-for="ManagerID" class="text-danger" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Shift" class="control-label"></label>
+                <select asp-for="Shift" class="form-control">
+                    @foreach (int shift in Enum.GetValues(typeof(ShiftType)))
+                    {
+        <option value="@shift">@Enum.GetName(typeof(ShiftType), shift)</option>
+;
+    }
+                </select>
+                <span asp-validation-for="Shift" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Photo" class="control-label"></label>
+                <input asp-for="Photo" class="form-control" />
+                <span asp-validation-for="Photo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Color" class="control-label"></label>
+                <input asp-for="Color" class="form-control" />
+                <span asp-validation-for="Color" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Permission" class="control-label"></label>
+
+                <select asp-for="Permission" class="form-control">
+
+                    @foreach (int permission in Enum.GetValues(typeof(PermissionEnum)))
+                    {
+        <option value="@permission">@Enum.GetName(typeof(PermissionEnum), permission)</option>;
+                    }
+                </select>
+                <span asp-validation-for="Permission" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+

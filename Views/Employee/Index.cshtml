@@ -1,0 +1,74 @@
+@model ConserviceHRSite.Models.DepartmentViewModel
+@{ ViewData["Title"] = "Team"; }
+<h1>Conservice Team Members</h1>
+<p>
+    <a asp-action="Create">Add New Employee</a>
+</p>
+<form asp-action="Index" method="get">
+    <div class="form-actions">
+        <p>
+            Name: <input type="text" name="SearchString" value="@ViewData["CurrentFilter"]" />
+            Department: <select asp-for="DepartmentGenre" asp-items="Model.Departments">
+                <option value="">All</option>
+            </select>
+            <input type="submit" value="Search" class="btn btn-primary" /> |
+            <a asp-action="Index">Back to Full List</a>
+        </p>
+    </div>
+</form>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["NameSortParm"]">@Html.DisplayNameFor(model => model.Employees[0].Name)</a>
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Employees[0].Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Employees[0].Phone)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Employees[0].Manager)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Employees[0].Department)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Employees[0].Position)
+            </th>
+           
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Employees)
+        {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.Name)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Email)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Phone)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Manager.Name)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Department.Name)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Position.Name)
+    </td>
+    
+    <td>
+        <a asp-action="Details" asp-route-id="@item.ID">View More</a>
+    </td>
+</tr>}
+    </tbody>
+</table>
+

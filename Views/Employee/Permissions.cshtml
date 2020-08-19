@@ -1,0 +1,33 @@
+@model IEnumerable<ConserviceHRSite.Models.Employee>
+@{ ViewData["Title"] = "Security Permissions"; }
+<div>
+    <h1>Permissions</h1>
+    <hr />
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    Employee
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Permission)
+                </th>
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.Name)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Permission)
+    </td>
+
+</tr>}
+        </tbody>
+    </table>
+</div>
+

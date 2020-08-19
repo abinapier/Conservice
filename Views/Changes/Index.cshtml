@@ -1,0 +1,37 @@
+@model IEnumerable<ConserviceHRSite.Models.Changes>
+@{ ViewData["Title"] = "Change Log"; }
+<h1>@ViewData["CurrentEmployee"]</h1>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Date)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ChangeType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+<tr>
+    <td>
+        @item.Date.ToShortDateString()
+    </td>
+    <td>
+        @Html.DisplayFor(model => item.ChangeType)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Description)
+    </td>
+
+</tr>
+}
+    </tbody>
+</table>
+<a asp-controller="Employee" asp-action="Details" asp-route-id="@ViewData["EmployeeID"]">Back to Details</a>
